@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Users')
+@section('title', 'Doctors')
 
 @push('style')
 <!-- CSS Libraries -->
@@ -11,14 +11,14 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Users</h1>
+            <h1>Doctors</h1>
             <div class="section-header-button">
-                <a href="{{ route('users.create') }}" class="btn btn-primary">Add New</a>
+                <a href="{{ route('doctors.create') }}" class="btn btn-primary">Add New</a>
             </div>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                <div class="breadcrumb-item"><a href="#">Users</a></div>
-                <div class="breadcrumb-item">All Users</div>
+                <div class="breadcrumb-item"><a href="#">Doctors</a></div>
+                <div class="breadcrumb-item">All Doctors</div>
             </div>
         </div>
         <div class="section-body">
@@ -32,7 +32,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="float-right">
-                                <form method="GET" action="{{ route('users.index') }}">
+                                <form method="GET" action="{{ route('doctors.index') }}">
                                     <div class="input-group">
                                         <input type="text" class="form-control" placeholder="Search" name="name">
                                         <div class="input-group-append">
@@ -46,32 +46,33 @@
                                 <table class="table-striped table">
                                     <tr>
                                         <th>Name</th>
+                                        <th>Photo </th>
+                                        <th>Specialist</th>
                                         <th>Email</th>
                                         <th>Phone</th>
-                                        <th>Role</th>
+                                        <th>SIP</th>
                                         <th>
                                             <div class="d-flex justify-content-center">
                                                 Action
                                             </div>
                                         </th>
                                     </tr>
-                                    @foreach ($users as $user)
+                                    @foreach ($doctors as $doctor)
                                     <tr>
-                                        <td>{{ $user->name }}
-                                        </td>
+                                        <td>{{ $doctor->doctor_name }} </td>
                                         <td>
-                                            {{ $user->email }}
+                                            <img src="{{ asset($doctor->photo) }}" alt="Doctor's Photo" style="max-width: 80px; max-height: 80px;">
                                         </td>
-                                        <td>
-                                            {{ $user->phone }}
-                                        </td>
-                                        <td>{{ $user->role }}</td>
+                                        <td>{{ $doctor->doctor_specialist }} </td>
+                                        <td>{{ $doctor->doctor_email }} </td>
+                                        <td>{{ $doctor->doctor_phone }} </td>
+                                        <td>{{ $doctor->sip }} </td>
                                         <td>
                                             <div class="d-flex justify-content-center">
-                                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary btn-action mr-1">
+                                                <a href="{{ route('doctors.edit', $doctor->id) }}" class="btn btn-primary btn-action mr-1">
                                                     <i class="fas fa-pencil-alt"></i>
                                                 </a>
-                                                <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="ml-2">
+                                                <form action="{{ route('doctors.destroy', $doctor->id) }}" method="POST" class="ml-2">
                                                     <input type="hidden" name="_method" value="DELETE" />
                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                                                     <button class="btn btn-danger btn-action">
@@ -85,7 +86,7 @@
                                 </table>
                             </div>
                             <div class="float-right">
-                                {{ $users->withQueryString()->links() }}
+                                {{ $doctors->withQueryString()->links() }}
                             </div>
                         </div>
                     </div>

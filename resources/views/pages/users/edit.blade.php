@@ -23,19 +23,12 @@
                 <div class="breadcrumb-item">Users</div>
             </div>
         </div>
-
         <div class="section-body">
             <h2 class="section-title">Users</h2>
-
-
-
             <div class="card">
-                <form action="{{ route('users.update', $user) }}" method="POST">
+                <form action="{{ route('users.update', $user->id) }}" method="POST">
                     @csrf
                     @method('PUT')
-                    <div class="card-header">
-                        <h4>Input Text</h4>
-                    </div>
                     <div class="card-body">
                         <div class="form-group">
                             <label>Name</label>
@@ -67,9 +60,7 @@
                                         <i class="fas fa-lock"></i>
                                     </div>
                                 </div>
-                                <input type="password" class="form-control @error('password')
-                                is-invalid
-                            @enderror" name="password">
+                                <input type="password" name="password" class="form-control @error('password') is-invalid  @enderror">
                             </div>
                             @error('password')
                             <div class="invalid-feedback">
@@ -79,10 +70,15 @@
                         </div>
                         <div class="form-group">
                             <label>Phone</label>
-                            <input type="number" class="form-control" name="phone" value="{{ $user->phone }}">
+                            <input type="number" class="form-control @error('phone') is-invalid  @enderror" name=" phone" value="{{ $user->phone }}">
+                            @error('phone')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Roles</label>
+                            <label class="form-label">Role</label>
                             <div class="selectgroup w-100">
                                 <label class="selectgroup-item">
                                     <input type="radio" name="role" value="admin" class="selectgroup-input" @if ($user->role == 'admin') checked @endif>
@@ -96,7 +92,6 @@
                                     <input type="radio" name="role" value="user" class="selectgroup-input" @if ($user->role == 'user') checked @endif>
                                     <span class="selectgroup-button">User</span>
                                 </label>
-
                             </div>
                         </div>
                     </div>
@@ -105,7 +100,6 @@
                     </div>
                 </form>
             </div>
-
         </div>
     </section>
 </div>

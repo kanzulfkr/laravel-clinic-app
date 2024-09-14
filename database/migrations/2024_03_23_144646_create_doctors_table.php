@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('photo')->nullable();
             $table->string('address')->nullable();
             $table->string('sip');
-            $table->string('id_ihs');
-            $table->string('nik');
+            $table->string('id_ihs')->nullable();
+            $table->string('nik')->nullable();
             $table->timestamps();
         });
     }

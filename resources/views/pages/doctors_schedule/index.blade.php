@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Products')
+@section('title', 'Doctors Schedule')
 
 @push('style')
 <!-- CSS Libraries -->
@@ -11,14 +11,14 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Products</h1>
+            <h1>Doctor Schedules</h1>
             <div class="section-header-button">
-                <a href="{{ route('products.create') }}" class="btn btn-primary">Add New</a>
+                <a href="{{ route('doctors.create') }}" class="btn btn-primary">Add New</a>
             </div>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                <div class="breadcrumb-item"><a href="#">Products</a></div>
-                <div class="breadcrumb-item">All Products</div>
+                <div class="breadcrumb-item"><a href="#">Doctor Schedules</a></div>
+                <div class="breadcrumb-item">All Doctors</div>
             </div>
         </div>
         <div class="section-body">
@@ -27,22 +27,12 @@
                     @include('layouts.alert')
                 </div>
             </div>
-            <h2 class="section-title">Products</h2>
-            <p class="section-lead">
-                You can manage all Products, such as editing, deleting and more.
-            </p>
-
-
             <div class="row mt-4">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header">
-                            <h4>All Products</h4>
-                        </div>
                         <div class="card-body">
-
                             <div class="float-right">
-                                <form method="GET" action="{{ route('products.index') }}">
+                                <form method="GET" action="{{ route('doctors.index') }}">
                                     <div class="input-group">
                                         <input type="text" class="form-control" placeholder="Search" name="name">
                                         <div class="input-group-append">
@@ -51,57 +41,52 @@
                                     </div>
                                 </form>
                             </div>
-
                             <div class="clearfix mb-3"></div>
-
                             <div class="table-responsive">
                                 <table class="table-striped table">
                                     <tr>
-
                                         <th>Name</th>
-                                        <th>Description</th>
-                                        <th>Price</th>
-                                        <th>Quantity</th>
-                                        <th>Action</th>
+                                        <th>Photo </th>
+                                        <th>Specialist</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>SIP</th>
+                                        <th>
+                                            <div class="d-flex justify-content-center">
+                                                Action
+                                            </div>
+                                        </th>
                                     </tr>
-                                    @foreach ($products as $product)
+                                    @foreach ($doctors as $doctor)
                                     <tr>
-
-                                        <td>{{ $product->name }}
-                                        </td>
+                                        <td>{{ $doctor->doctor_name }} </td>
                                         <td>
-                                            {{ $product->description }}
+                                            <img src="{{ asset($doctor->photo) }}" alt="Doctor's Photo" style="max-width: 80px; max-height: 80px;">
                                         </td>
-                                        <td>
-                                            {{ $product->price }}
-                                        </td>
-                                        <td>
-                                            {{ $product->quantity }}
-                                        </td>
+                                        <td>{{ $doctor->doctor_specialist }} </td>
+                                        <td>{{ $doctor->doctor_email }} </td>
+                                        <td>{{ $doctor->doctor_phone }} </td>
+                                        <td>{{ $doctor->sip }} </td>
                                         <td>
                                             <div class="d-flex justify-content-center">
-                                                <a href='{{ route('products.edit', $product->id) }}' class="btn btn-sm btn-info btn-icon">
-                                                    <i class="fas fa-edit"></i>
-                                                    Edit
+                                                <a href="{{ route('doctors.edit', $doctor->id) }}" class="btn btn-primary btn-action mr-1">
+                                                    <i class="fas fa-pencil-alt"></i>
                                                 </a>
-
-                                                <form action="{{ route('products.destroy', $product->id) }}" method="POST" class="ml-2">
+                                                <form action="{{ route('doctors.destroy', $doctor->id) }}" method="POST" class="ml-2">
                                                     <input type="hidden" name="_method" value="DELETE" />
                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-                                                    <button class="btn btn-sm btn-danger btn-icon confirm-delete">
-                                                        <i class="fas fa-times"></i> Delete
+                                                    <button class="btn btn-danger btn-action">
+                                                        <i class="fas fa-trash"></i>
                                                     </button>
                                                 </form>
                                             </div>
                                         </td>
                                     </tr>
                                     @endforeach
-
-
                                 </table>
                             </div>
                             <div class="float-right">
-                                {{ $products->withQueryString()->links() }}
+                                {{ $doctors->withQueryString()->links() }}
                             </div>
                         </div>
                     </div>

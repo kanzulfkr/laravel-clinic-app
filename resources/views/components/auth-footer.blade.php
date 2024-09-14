@@ -1,3 +1,3 @@
   <div class="simple-footer">
-    Copyright &copy; 2023 <div class="bullet"></div> Created By Kanzul
+    Copyright &copy; 2024 <div class="bullet"></div> Go Clinic
   </div>

@@ -14,7 +14,7 @@
                     Histories
                 </div>
                 <div class="search-item">
-                    <a href="#">#Stisla</a>
+                    <a href="#">#Go Clinic</a>
                     <a href="#" class="search-close"><i class="fas fa-times"></i></a>
                 </div>
 
@@ -59,12 +59,6 @@
                 <a href="#" class="dropdown-item has-icon">
                     <i class="far fa-user" {{ $role = auth()->user()->roles }}></i>
                     User
-                </a>
-                <a href="#" class="dropdown-item has-icon">
-                    <i class="fas fa-bolt"></i> Activities
-                </a>
-                <a href="#" class="dropdown-item has-icon">
-                    <i class="fas fa-cog"></i> Settings
                 </a>
                 <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item has-icon text-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit()">

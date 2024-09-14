@@ -23,18 +23,11 @@
                 <div class="breadcrumb-item">Users</div>
             </div>
         </div>
-
         <div class="section-body">
             <h2 class="section-title">Users</h2>
-
-
-
             <div class="card">
                 <form action="{{ route('users.store') }}" method="POST">
                     @csrf
-                    <div class="card-header">
-                        <h4>Input Text</h4>
-                    </div>
                     <div class="card-body">
                         <div class="form-group">
                             <label>Name</label>
@@ -66,24 +59,51 @@
                                         <i class="fas fa-lock"></i>
                                     </div>
                                 </div>
-                                <input type="password" class="form-control @error('password')
-                                is-invalid
-                            @enderror" name="password">
+                                <input type="password" name="password" class="form-control  @error('password')
+                                is-invalid @enderror">
+                                @error('password')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
-                            @error('password')
-                            <div class="invalid-feedback">
-                                {{ $message }}
+                            <div class="form-group">
+                                <label>Phone</label>
+                                <input type="number" name="phone" class="form-control  @error('phone')
+                                is-invalid @enderror">
+                                @error('phone')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
-                            @enderror
+                            <div class="form-group">
+                                <label class="form-label">Role</label>
+                                <div class="selectgroup w-100 @error('role')
+                                is-invalid @enderror"" >
+                                    <label class=" selectgroup-item">
+                                    <input type="radio" name="role" value="admin" class="selectgroup-input">
+                                    <span class="selectgroup-button">Admin</span>
+                                    </label>
+                                    <label class="selectgroup-item">
+                                        <input type="radio" name="role" value="doctor" class="selectgroup-input">
+                                        <span class="selectgroup-button">Doctor</span>
+                                    </label>
+                                    <label class="selectgroup-item">
+                                        <input type="radio" name="role" value="user" class="selectgroup-input">
+                                        <span class="selectgroup-button">User</span>
+                                    </label>
+                                </div>
+                                @error('role')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label>Phone</label>
-                            <input type="number" class="form-control" name="phone">
+                        <div class="card-footer text-right">
+                            <button class="btn btn-primary">Submit</button>
                         </div>
-                    </div>
-                    <div class="card-footer text-right">
-                        <button class="btn btn-primary">Submit</button>
-                    </div>
                 </form>
             </div>
 
