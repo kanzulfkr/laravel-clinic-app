@@ -13,8 +13,11 @@ return new class extends Migration
     {
         Schema::create('doctor_schedules', function (Blueprint $table) {
             $table->id();
+            //doctor_id (foreign key) -> doctors
             $table->foreignId('doctor_id')->constrained('doctors');
+            //day
             $table->string('day');
+            //time
             $table->string('time');
             $table->string('status')->default('active');
             $table->string('note')->nullable();

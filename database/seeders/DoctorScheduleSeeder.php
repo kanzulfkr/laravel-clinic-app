@@ -12,6 +12,18 @@ class DoctorScheduleSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\DoctorSchedule::factory(30)->create();
+        //create doctor schedule
+        \App\Models\DoctorSchedule::create([
+            'doctor_id' => 1,
+            'day' => 'Monday',
+            'time' => '08:00 - 12:00'
+        ]);
+
+        //auto generate doctor schedule
+        \App\Models\Doctor::all()->each(function ($doctor) {
+            \App\Models\DoctorSchedule::factory()->count(1)->create([
+                'doctor_id' => $doctor->id
+            ]);
+        });
     }
 }

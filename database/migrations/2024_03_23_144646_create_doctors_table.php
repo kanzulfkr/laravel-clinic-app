@@ -13,15 +13,20 @@ return new class extends Migration
     {
         Schema::create('doctors', function (Blueprint $table) {
             $table->id();
+            //doctor_name
             $table->string('doctor_name');
+            //doctor_specialist
             $table->string('doctor_specialist');
+            //doctor_phone
             $table->string('doctor_phone');
+            //doctor_email
             $table->string('doctor_email');
+            //photo
             $table->string('photo')->nullable();
+            //address
             $table->string('address')->nullable();
+            //sip
             $table->string('sip');
-            $table->string('id_ihs')->nullable();
-            $table->string('nik')->nullable();
             $table->timestamps();
         });
     }

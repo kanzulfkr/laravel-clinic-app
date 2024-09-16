@@ -8,7 +8,7 @@ use App\Models\Doctor;
 
 class DoctorController extends Controller
 {
-
+    //index
     public function index(Request $request)
     {
         $doctors = DB::table('doctors')
@@ -20,11 +20,13 @@ class DoctorController extends Controller
         return view('pages.doctors.index', compact('doctors'));
     }
 
+    //create
     public function create()
     {
         return view('pages.doctors.create');
     }
 
+    //store
     public function store(Request $request)
     {
         $request->validate([
@@ -77,18 +79,21 @@ class DoctorController extends Controller
         return redirect()->route('doctors.index')->with('success', 'Doctor created successfully.');
     }
 
+    //show
     public function show($id)
     {
         $doctor = DB::table('doctors')->where('id', $id)->first();
         return view('pages.doctors.show', compact('doctor'));
     }
 
+    //edit
     public function edit($id)
     {
         $doctor = DB::table('doctors')->where('id', $id)->first();
         return view('pages.doctors.edit', compact('doctor'));
     }
 
+    //update
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -110,6 +115,7 @@ class DoctorController extends Controller
         return redirect()->route('doctors.index')->with('success', 'Doctor updated successfully.');
     }
 
+    //destroy
     public function destroy($id)
     {
         DB::table('doctors')->where('id', $id)->delete();

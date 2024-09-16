@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    //index
+
     public function index(Request $request)
     {
-        $users = DB::table('users')
+        $users = User::where('role', 'user')
             ->when($request->input('name'), function ($query, $name) {
                 return $query->where('name', 'like', '%' . $name . '%');
             })

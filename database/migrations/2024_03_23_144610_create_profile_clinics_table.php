@@ -19,7 +19,9 @@ return new class extends Migration
             $table->string('email');
             $table->string('logo')->nullable();
             $table->string('description')->nullable();
+            //doctor_name
             $table->string('doctor_name');
+            //kode unik
             $table->string('unique_code');
             $table->timestamps();
         });

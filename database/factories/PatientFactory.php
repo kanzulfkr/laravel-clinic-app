@@ -17,16 +17,16 @@ class PatientFactory extends Factory
     public function definition(): array
     {
         return [
-            'nik' => $this->faker->numberBetween(1, 100),
-            'kk' => $this->faker->numberBetween(1, 100),
-            'name' => $this->faker->word,
+            'nik' => $this->faker->numberBetween(100000000000000, 999999999999999),
+            'kk' => $this->faker->numberBetween(100000000000000, 999999999999999),
+            'name' => $this->faker->name(),
             'phone' => $this->faker->phoneNumber(),
             'email' => $this->faker->email(),
-            'gender' => $this->faker->word,
-            'birth_place' => $this->faker->word,
+            'gender' => $this->faker->randomElement(['male', 'female']),
+            'birth_place' => $this->faker->city(),
             'birth_date' => $this->faker->date(),
             'is_deceased' => false,
-            'address_line' => $this->faker->text,
+            'address_line' => $this->faker->address(),
             'city' => $this->faker->word,
             'city_code' => $this->faker->numberBetween(1, 100),
             'province' => $this->faker->word,
@@ -38,7 +38,7 @@ class PatientFactory extends Factory
             'rt' => $this->faker->numberBetween(1, 100),
             'rw' => $this->faker->numberBetween(1, 100),
             'postal_code' => $this->faker->numberBetween(1, 100),
-            'marital_status' => $this->faker->word,
+            'marital_status' => $this->faker->randomElement(['single', 'married', 'divorced', 'widowed']),
             'relationship_name' => $this->faker->word,
             'relationship_phone' => $this->faker->phoneNumber(),
 
