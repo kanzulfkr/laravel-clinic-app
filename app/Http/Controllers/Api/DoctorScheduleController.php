@@ -18,10 +18,6 @@ class DoctorScheduleController extends Controller
             ->orderBy('id', 'desc')
             ->get();
 
-        return response()->json([
-            'status' => 'success',
-            'data' => $schedules,
-            'message' => 'Doctor schedules retrieved successfully',
-        ], 200);
+        return $this->successResponse($schedules, 'Doctor schedules retrieved successfully', 200);
     }
 }

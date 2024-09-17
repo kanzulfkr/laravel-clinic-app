@@ -18,11 +18,7 @@ class PatientScheduleController extends Controller
             ->orderBy('id', 'desc')
             ->get();
 
-        return response([
-            'data' => $patientSchedules,
-            'message' => 'Success',
-            'status' => 'OK'
-        ], 200);
+        return $this->successResponse($patientSchedules, 'Patient Schedule retrieved successfully.');
     }
 
     public function store(Request $request)
@@ -45,10 +41,6 @@ class PatientScheduleController extends Controller
 
         ]);
 
-        return response([
-            'data' => $patientSchedule,
-            'message' => 'Patient schedule stored',
-            'status' => 'OK'
-        ], 200);
+        return $this->successResponse($patientSchedule, 'Patient Schedule created successfully.', 201);
     }
 }

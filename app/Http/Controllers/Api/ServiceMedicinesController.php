@@ -9,16 +9,12 @@ class ServiceMedicinesController extends Controller
 {
     public function index(Request $request)
     {
-        $service_medicines = \App\Models\ServiceMedicines::when($request->input('name'), function ($query, $name) {
+        $serviceMedicines = \App\Models\ServiceMedicines::when($request->input('name'), function ($query, $name) {
             return $query->where('name', 'like', '%' . $name . '%');
         })
             ->orderBy('id', 'desc')
             ->get();
 
-        return response([
-            'data' => $service_medicines,
-            'message' => 'Success',
-            'status' => 'OK'
-        ], 200);
+        return $this->successResponse($serviceMedicines, 'Service Medicines retrieved successfully.');
     }
 }

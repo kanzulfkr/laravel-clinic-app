@@ -17,10 +17,6 @@ class DoctorController extends Controller
             ->orderBy('id', 'desc')
             ->get();
 
-        return response([
-            'data' => $doctors,
-            'message' => 'Success',
-            'status' => 'OK'
-        ], 200);
+        return $this->successResponse($doctors, 'Doctors retrieved successfully.', 200);
     }
 }

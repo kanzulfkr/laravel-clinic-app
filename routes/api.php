@@ -21,25 +21,23 @@ use App\Http\Controllers\Api\PatientScheduleController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
 
-// //doctors
-// Route::apiResource('/api-doctors', DoctorController::class)->middleware('auth:sanctum');
+route::middleware(['auth:sanctum', 'api'])->group(function () {
 
-// //patients
-// Route::apiResource('/api-patients', PatientController::class)->middleware('auth:sanctum');
+    Route::apiResource('/doctors', DoctorController::class);
 
-// //doctor schedules
-// Route::apiResource('/api-doctor-schedules', DoctorScheduleController::class)->middleware('auth:sanctum');
+    Route::apiResource('/patients', PatientController::class);
 
-// //service medicines
-// Route::apiResource('/api-service-medicines', ServiceMedicinesController::class)->middleware('auth:sanctum');
+    Route::apiResource('/doctor-schedules', DoctorScheduleController::class);
 
-// //patient schedules
-// Route::apiResource('/api-patient-schedules', PatientScheduleController::class)->middleware('auth:sanctum');
+    Route::apiResource('/service-medicines', ServiceMedicinesController::class);
+
+    Route::apiResource('/patient-schedules', PatientScheduleController::class);
+});

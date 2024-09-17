@@ -18,11 +18,7 @@ class PatientController extends Controller
             ->orderBy('id', 'desc')
             ->get();
 
-        return response([
-            'data' => $patients,
-            'message' => 'Success',
-            'status' => 'OK'
-        ], 200);
+        return $this->successResponse($patients, 'Patient retrieved successfully.');
     }
 
     public function store(Request $request)
@@ -54,10 +50,6 @@ class PatientController extends Controller
 
         $patient = Patient::create($request->all());
 
-        return response([
-            'data' => $patient,
-            'message' => 'Patient created.',
-            'status' => 'OK'
-        ], 201);
+        return $this->successResponse($patient, 'Patient created successfully.', 201);
     }
 }
